@@ -1,81 +1,96 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon";
+
+const links = [
+  {
+    label: "About",
+    url: "/about/",
+  },
+  {
+    label: "Trips",
+    url: "/trips/",
+  },
+  {
+    label: "Gallery",
+    url: "/gallery/",
+  },
+  {
+    label: "News",
+    url: "/news/",
+  },
+];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="Yale Outdoors">
+  <section class="p-20 pb-24">
+    <div class="grid grid-cols-2 gap-28">
+      <div class="grid gap-14 items-center">
+        <h2 class="text-4xl leading-relaxed text-emerald-800 font-serif">
+          Offering trips, events, and good-spirited community to Yale since who
+          knows when.
+        </h2>
+        <div class="grid gap-10">
+          <h3 class="text-emerald-600 text-3xl font-bold">
+            Join us and get outside!
+          </h3>
+          <div class="grid gap-3 grid-flow-col">
+            <input
+              type="email"
+              placeholder="Email"
+              class="border border-emerald-400 rounded-xl px-5 py-2 outline-none text-lg text-emerald-800 placeholder:text-emerald-800/50"
+            />
+            <button
+              class="bg-emerald-600 text-white rounded-xl px-5 py-2 text-lg hover:bg-emerald-700 transition-colors"
+            >
+              Join the newsletter
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <figure class="grid gap-5">
+          <img src="/banner.jpg" alt="Yale Outdoors" class="rounded-xl" />
+          <div class="flex items-center justify-between">
+            <figcaption class="text-gray-700 text-sm">
+              A recent trip to the Adirondacks
+            </figcaption>
+            <a
+              class="text-emerald-600 hover:text-emerald-700 flex items-center gap-2"
+              href="/gallery/"
+            >
+              View Gallery
+              <Icon name="tabler:arrow-right" class="w-6" />
+            </a>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="p-20 grid gap-16 bg-emerald-600">
+    <h2 class="text-white font-serif font-bold text-4xl">Upcoming Trips</h2>
+    <div class="grid grid-cols-3 gap-10">
+      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
+        <h3 class="text-2xl font-bold">Trip Name</h3>
+        <p class="text-gray-500">Trip Description</p>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700"
+          >Learn More</a
+        >
+      </div>
+      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
+        <h3 class="text-2xl font-bold">Trip Name</h3>
+        <p class="text-gray-500">Trip Description</p>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700"
+          >Learn More</a
+        >
+      </div>
+      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
+        <h3 class="text-2xl font-bold">Trip Name</h3>
+        <p class="text-gray-500">Trip Description</p>
+        <a href="#" class="text-emerald-600 hover:text-emerald-700"
+          >Learn More</a
+        >
+      </div>
+    </div>
+  </section>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
