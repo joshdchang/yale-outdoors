@@ -187,20 +187,6 @@
     --c9: #1E8468;
     --c10: #047857;
   }
-  // html {
-  //   --c0: #fffef4;
-  //   --c1: #FEFCE8;
-  //   --c2: #EAEED0;
-  //   --c3: #D6E0B8;
-  //   --c4: #C2D2A0;
-  //   --c5: #AEC488;
-  //   --c6: #9AB670;
-  //   --c7: #86A858;
-  //   --c8: #729A40;
-  //   --c9: #5E8C28;
-  //   --c10: #4D7C0F;
-  // }
-
 
   // content section
   .wrap {
@@ -216,30 +202,3 @@
     text-decoration-color: var(--c6);
   }
 </style>
-
-<!-- <script>
-  // constant elements: your main scrolling element; html element
-  const scrollEl = document.documentElement;
-  const root = document.documentElement;
-
-  let scrollPos: Number;
-
-  // update css property on scroll
-  function animation() {
-    const scrollTop = (scrollEl.scrollTop - 100) / 4
-    // check the scroll position has changed
-    if (scrollPos !== scrollTop) {
-      // reset the seen scroll position
-      scrollPos = scrollTop;
-      // update css property --scrollPos with scroll position in pixels
-      root.style.setProperty("--scrollPos", scrollPos + "px");
-    }
-
-    // call animation again on next animation frame
-    window.requestAnimationFrame(animation);
-  }
-
-  // start animation on next animation frame
-  window.requestAnimationFrame(animation);
-  // setInterval(animation, 1000 / 60);
-</script> -->
