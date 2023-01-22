@@ -1,50 +1,84 @@
 ---
+import DesertDivider from "@components/DesertDivider.astro";
+import LandscapeDivider from "@components/LandscapeDivider.astro";
+import RockDivider from "@components/RockDivider.astro";
+import WaveDivider from "@components/WaveDivider.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon";
 
-const links = [
+const trips = [
   {
-    label: "About",
-    url: "/about/",
+    title: "East Rock hike",
+    description: "A classic hike in New Haven, with a great view of the city.",
+    image: "/east-rock.jpeg",
+    date: "2021-10-02 10:00 AM",
+    link: "#",
   },
   {
-    label: "Trips",
-    url: "/trips/",
+    title: "Sleeping Giant State Park hike",
+    description: "Beautiful views of the Connecticut River Valley.",
+    image: "/sleeping-giant.jpg",
+    date: "2021-10-02 10:00 AM",
+    link: "#",
   },
   {
-    label: "Gallery",
-    url: "/gallery/",
+    title: "Backpacking in the Adirondacks",
+    description: "A two-night backpacking trip in the Adirondacks during spring break.",
+    image: "/adirondacks.avif",
+    date: "2021-10-02 10:00 AM",
+    link: "#",
+  },
+];
+const gear = [
+  {
+    title: "Backpacking",
+    description: "Everything you need to go backpacking.",
+    image: "/backpacking.jpg",
+    link: "#",
   },
   {
-    label: "News",
-    url: "/news/",
+    title: "Camping",
+    description: "Everything you need to go camping.",
+    image: "/camping.jpg",
+    link: "#",
+  },
+  {
+    title: "Hiking",
+    description: "Everything you need to go hiking.",
+    image: "/hiking.jpg",
+    link: "#",
+  },
+  {
+    title: "Kayaking",
+    description: "Everything you need to go kayaking.",
+    image: "/kayaking.jpg",
+    link: "#",
+  },
+  {
+    title: "Rock Climbing",
+    description: "Everything you need to go rock climbing.",
+    image: "/rock-climbing.jpg",
+    link: "#",
+  },
+  {
+    title: "Skiing",
+    description: "Everything you need to go skiing.",
+    image: "/skiing.jpg",
+    link: "#",
   },
 ];
 ---
 
-<Layout title="Yale Outdoors">
-  <section class="p-20 pb-24">
+<Layout title="Yale Outdoors – Home">
+  <section class="p-20 pb-0">
     <div class="grid grid-cols-2 gap-28">
       <div class="grid gap-14 items-center">
-        <h2 class="text-4xl leading-relaxed text-emerald-800 font-serif">
-          Offering trips, events, and good-spirited community to Yale since who
-          knows when.
-        </h2>
+        <h2 class="text-4xl leading-relaxed text-emerald-800 font-serif">Offering trips, events, and good-spirited community to Yale since who knows when.</h2>
         <div class="grid gap-10">
-          <h3 class="text-emerald-600 text-3xl font-bold">
-            Join us and get outside!
-          </h3>
+          <h3 class="text-emerald-600 text-3xl font-bold">Join us and get outside!</h3>
           <div class="grid gap-3 grid-flow-col">
-            <input
-              type="email"
-              placeholder="Email"
-              class="border border-emerald-400 rounded-xl px-5 py-2 outline-none text-lg text-emerald-800 placeholder:text-emerald-800/50"
-            />
-            <button
-              class="bg-emerald-600 text-white rounded-xl px-5 py-2 text-lg hover:bg-emerald-700 transition-colors"
-            >
-              Join the newsletter
-            </button>
+            <input type="email" placeholder="Email" class="bg-white border border-emerald-400 rounded-lg px-5 py-2 outline-none text-lg text-emerald-800 placeholder:text-emerald-800/50 focus:ring ring-emerald-200" />
+            <button class="bg-emerald-600 text-white rounded-lg px-5 py-2 text-lg hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Join the newsletter</button>
           </div>
         </div>
       </div>
@@ -52,13 +86,8 @@ const links = [
         <figure class="grid gap-5">
           <img src="/banner.jpg" alt="Yale Outdoors" class="rounded-xl" />
           <div class="flex items-center justify-between">
-            <figcaption class="text-gray-700 text-sm">
-              A recent trip to the Adirondacks
-            </figcaption>
-            <a
-              class="text-emerald-600 hover:text-emerald-700 flex items-center gap-2"
-              href="/gallery/"
-            >
+            <figcaption class="text-gray-700 text-sm">A recent trip to the Adirondacks</figcaption>
+            <a class="text-emerald-600 hover:text-emerald-700 active:text-emerald-800 flex items-center gap-2" href="/gallery/">
               View Gallery
               <Icon name="tabler:arrow-right" class="w-6" />
             </a>
@@ -67,30 +96,111 @@ const links = [
       </div>
     </div>
   </section>
-  <section class="p-20 grid gap-16 bg-emerald-600">
-    <h2 class="text-white font-serif font-bold text-4xl">Upcoming Trips</h2>
-    <div class="grid grid-cols-3 gap-10">
-      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
-        <h3 class="text-2xl font-bold">Trip Name</h3>
-        <p class="text-gray-500">Trip Description</p>
-        <a href="#" class="text-emerald-600 hover:text-emerald-700"
-          >Learn More</a
-        >
+  <LandscapeDivider />
+  <section class="py-20 pb-32 bg-emerald-700 grid justify-center">
+    <div class="max-w-4xl grid gap-20">
+      <div class="grid gap-10">
+        <h2 class="font-serif font-bold text-4xl text-white">What is Yale Outdoors?</h2>
+        <p class="text-emerald-100 text-2xl leading-relaxed">
+          Yale Outdoors is a group of students who love to get outside. We organize trips to the mountains, the beach, the woods, and everywhere in between. We also host events like rock climbing, kayaking, wilderness medicine trainings, and more. We
+          organize trips for all skill levels, and we welcome everyone to join us.
+        </p>
       </div>
-      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
-        <h3 class="text-2xl font-bold">Trip Name</h3>
-        <p class="text-gray-500">Trip Description</p>
-        <a href="#" class="text-emerald-600 hover:text-emerald-700"
-          >Learn More</a
-        >
+      <div class="grid gap-10">
+        <h2 class="font-serif font-bold text-4xl text-white">How do I join?</h2>
+        <p class="text-emerald-100 text-2xl leading-relaxed">
+          Yale Outdoors meet every Tuesday at 5:45 PM in the Davenport Buttery. Come grab dinner and stop by! Also, be sure to join the mailing list to keep up-to-date on the latest YO news (see form above).
+        </p>
       </div>
-      <div class="bg-yellow-50 rounded-xl shadow p-8 grid gap-3">
-        <h3 class="text-2xl font-bold">Trip Name</h3>
-        <p class="text-gray-500">Trip Description</p>
-        <a href="#" class="text-emerald-600 hover:text-emerald-700"
-          >Learn More</a
-        >
+      <div class="grid gap-10 justify-start">
+        <a href="/about/" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-emerald-600 hover:bg-emerald-800 active:bg-emerald-900 transition-colors rounded-full">
+          <!-- <Icon name="tabler:mountain" class="w-6" /> -->
+          More about us
+        </a>
       </div>
     </div>
+    <!-- who we are, when we meet, link to see the board page -->
+  </section>
+  <RockDivider />
+  <section class="p-20 pt-24 pb-10 grid gap-20">
+    <div class="flex justify-between items-center">
+      <h2 class="text-emerald-700 font-serif font-bold text-4xl">Upcoming Trips + Events</h2>
+      <a href="/trips/" class="flex items-center gap-2 text-white text-lg px-16 py-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 transition-colors rounded-full">
+        <Icon name="tabler:calendar" class="w-6" />
+        Full schedule
+      </a>
+    </div>
+    <div class="grid grid-cols-3 gap-10">
+      {
+        trips.map((trip) => (
+          <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start shadow shadow-emerald-700/10 border border-emerald-300">
+            <figure class="rounded-lg aspect-video overflow-hidden flex items-center border">
+              <img src={trip.image} alt={trip.title} class="rounded-xl mb-3" />
+            </figure>
+            <div class="grid gap-5 place-items-start">
+              <h3 class="text-xl font-medium font-serif">{trip.title}</h3>
+              <p class="bg-emerald-100 px-4 py-1 rounded-full text-emerald-600">
+                {new Date(trip.date).toLocaleString("en-US", {
+                  weekday: "long",
+                  month: "short",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  timeZone: "America/New_York",
+                })}
+              </p>
+              <p class="text-gray-500">{trip.description}</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <a class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Register</a>
+              <a href={trip.link} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
+                Trip info
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <DesertDivider />
+  <section class="p-24 pt-6 bg-orange-700 grid gap-20">
+    <div class="grid grid-cols-2">
+      <div class="grid gap-10">
+        <h2 class="font-serif font-bold text-4xl text-white">Gear Rentals</h2>
+        <p class="text-orange-100 text-xl leading-relaxed">The Yale Outdoors Gear Room has a large collection of supplies that you can rent at low cost. The Gear Room is open from 3 to 5 PM on Thursdays.</p>
+      </div>
+      <div class="grid justify-end items-center">
+        <a href="/gear/" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-orange-600 hover:bg-orange-800 active:bg-orange-900 transition-colors rounded-full">
+          <Icon name="tabler:shopping-cart" class="w-6" />
+          Full gear list
+        </a>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-10">
+      {
+        gear.map((item) => (
+          <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start">
+            <figure class="rounded-lg aspect-video overflow-hidden flex place-items-center place-content-center border w-full">
+              <img src={item.image} alt={item.title} class="rounded-xl mb-3" />
+            </figure>
+            <div class="grid gap-5 place-items-start">
+              <h3 class="text-xl font-medium font-serif">{item.title}</h3>
+              <p class="text-gray-500">{item.description}</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <a class="bg-orange-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-orange-700 active:bg-orange-800 transition-colors">View selection</a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <WaveDivider />
+  <section class="px-40 py-16">
+    <h2 class="text-emerald-700 font-serif font-bold text-4xl">Buy Merch</h2>
+  </section>
+  <!-- <section>News</section> -->
+  <section class="px-40 py-16">
+    <h2 class="text-emerald-700 font-serif font-bold text-4xl">Contact Us</h2>
   </section>
 </Layout>

@@ -1,6 +1,31 @@
 {
-  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "inlineFold.autoFold": true,
+  "inlineFold.regex": "(class|className)=(({(`|))|(['\"`]))(.*?)(\\2|(\\4)})",
+  "inlineFold.regexFlags": "g",
+  "inlineFold.regexGroup": "6",
+  "inlineFold.supportedLanguages": [
+    "vue",
+    "html",
+    "svelte",
+    "vue-html",
+    "php",
+    "blade",
+    "erb",
+    "twig",
+    "nunjucks",
+    "django-html",
+    "jinja-html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "astro"
+  ],
+  "inlineFold.unfoldOnLineSelect": true
 }
