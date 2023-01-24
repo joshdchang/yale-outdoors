@@ -1,0 +1,18 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const merch = await getCollection("merch");
+---
+<Layout title="Merch">
+  <div>
+    <h1>Merch</h1>
+    <ul>
+      {merch.map((item) => (
+        <li>
+          <a href={`/merch/${item.slug}`}>{item.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

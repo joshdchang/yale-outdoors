@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 import DesertDivider from "@components/dividers/DesertDivider.astro";
 import LandscapeDivider from "@components/dividers/LandscapeDivider.astro";
 import RockDivider from "@components/dividers/RockDivider.astro";
@@ -6,108 +8,12 @@ import WaveDivider from "@components/dividers/WaveDivider.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon";
 
-const trips = [
-  {
-    title: "East Rock hike",
-    description: "A classic hike in New Haven, with a great view of the city.",
-    image: "/east-rock.jpeg",
-    date: "2021-10-02 10:00 AM",
-    link: "#",
-  },
-  {
-    title: "Sleeping Giant State Park hike",
-    description: "Beautiful views of the Connecticut River Valley.",
-    image: "/sleeping-giant.jpg",
-    date: "2021-10-02 10:00 AM",
-    link: "#",
-  },
-  {
-    title: "Backpacking in the Adirondacks",
-    description: "A two-night backpacking trip in the Adirondacks during spring break.",
-    image: "/adirondacks.avif",
-    date: "2021-10-02 10:00 AM",
-    link: "#",
-  },
-];
-const gear = [
-  {
-    title: "Backpacking",
-    description: "Everything you need to go backpacking.",
-    image: "/backpacking.jpg",
-    link: "#",
-  },
-  {
-    title: "Camping",
-    description: "Everything you need to go camping.",
-    image: "/camping.jpg",
-    link: "#",
-  },
-  {
-    title: "Hiking",
-    description: "Everything you need to go hiking.",
-    image: "/hiking.jpg",
-    link: "#",
-  },
-  {
-    title: "Kayaking",
-    description: "Everything you need to go kayaking.",
-    image: "/kayaking.jpg",
-    link: "#",
-  },
-  {
-    title: "Rock Climbing",
-    description: "Everything you need to go rock climbing.",
-    image: "/rock-climbing.jpg",
-    link: "#",
-  },
-  {
-    title: "Skiing",
-    description: "Everything you need to go skiing.",
-    image: "/skiing.jpg",
-    link: "#",
-  },
-];
-const merch = [
-  {
-    title: "Yale Outdoors T-Shirt",
-    price: "$20",
-    image: "/t-shirt.jpg",
-    link: "#",
-  },
-  {
-    title: "Yale Outdoors Hoodie",
-    price: "$40",
-    image: "/hoodie.jpg",
-    link: "#",
-  },
-  {
-    title: "Yale Outdoors Sticker",
-    price: "$5",
-    image: "/sticker.jpg",
-    link: "#",
-  },
-  {
-    title: "Yale Outdoors Mug",
-    price: "$10",
-    image: "/mug.jpg",
-    link: "#",
-  },
-  {
-    title: "Yale Outdoors Water Bottle",
-    price: "$10",
-    image: "/water-bottle.jpg",
-    link: "#",
-  },
-  {
-    title: "Yale Outdoors Backpack",
-    price: "$50",
-    image: "/bag.jpg",
-    link: "#",
-  },
-];
+const trips = await getCollection("trips");
+const gear = await getCollection("gear");
+const merch = await getCollection("merch");
 ---
 
-<Layout title="Yale Outdoors – Home">
+<Layout title="Home">
   <section class="p-20 pb-0">
     <div class="grid grid-cols-2 gap-28">
       <div class="grid gap-14 items-center">
@@ -173,25 +79,32 @@ const merch = [
         trips.map((trip) => (
           <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start shadow shadow-emerald-700/10 border border-emerald-300">
             <figure class="rounded-lg aspect-video overflow-hidden flex items-center border">
-              <img src={trip.image} alt={trip.title} class="rounded-xl mb-3" />
+              <img src={trip.data.image} alt={trip.data.title} class="rounded-xl mb-3" />
             </figure>
             <div class="grid gap-5 place-items-start">
-              <h3 class="text-xl font-medium font-serif">{trip.title}</h3>
-              <p class="bg-emerald-100 px-4 py-1 rounded-full text-emerald-600">
-                {new Date(trip.date).toLocaleString("en-US", {
-                  weekday: "long",
-                  month: "short",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  timeZone: "America/New_York",
-                })}
-              </p>
-              <p class="text-gray-500">{trip.description}</p>
+              <h3 class="text-xl font-medium font-serif">{trip.data.title}</h3>
+              <time datetime={trip.data.date.toISOString()} class="bg-emerald-100 px-4 py-1 rounded-full text-emerald-600">
+                {trip.data.time
+                  ? trip.data.date.toLocaleString("en-US", {
+                      weekday: "long",
+                      month: "short",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      timeZone: "America/New_York",
+                    })
+                  : trip.data.date.toLocaleString("en-US", {
+                      weekday: "long",
+                      month: "short",
+                      day: "numeric",
+                      timeZone: "America/New_York",
+                    })}
+              </time>
+              <p class="text-gray-500">{trip.data.description}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Register</a>
-              <a href={trip.link} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
+              <a href={`/trips/${trip.slug}/`} class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Register</a>
+              <a href={`/trips/${trip.slug}/`} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
                 Trip info
               </a>
             </div>
@@ -219,14 +132,14 @@ const merch = [
         gear.map((item) => (
           <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start">
             <figure class="rounded-lg aspect-video overflow-hidden flex place-items-center place-content-center border w-full">
-              <img src={item.image} alt={item.title} class="rounded-xl mb-3" />
+              <img src={item.data.image} alt={item.data.title} class="rounded-xl mb-3" />
             </figure>
             <div class="grid gap-5 place-items-start">
-              <h3 class="text-xl font-medium font-serif">{item.title}</h3>
-              <p class="text-gray-500">{item.description}</p>
+              <h3 class="text-xl font-medium font-serif">{item.data.title}</h3>
+              <p class="text-gray-500">{item.data.description}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a class="bg-orange-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-orange-700 active:bg-orange-800 transition-colors">View selection</a>
+              <a href={`/gear/${item.slug}/`} class="bg-orange-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-orange-700 active:bg-orange-800 transition-colors">View selection</a>
             </div>
           </div>
         ))
@@ -256,17 +169,15 @@ const merch = [
         merch.map((item) => (
           <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start shadow shadow-emerald-700/10 border border-emerald-300">
             <figure class="rounded-lg aspect-video overflow-hidden flex items-center border">
-              <img src={item.image} alt={item.title} class="rounded-xl mb-3" />
+              <img src={item.data.image} alt={item.data.title} class="rounded-xl mb-3" />
             </figure>
             <div class="grid gap-5 place-items-start">
-              <h3 class="text-xl font-medium font-serif">{item.title}</h3>
-              <p class="text-gray-500 text-lg">{item.price}</p>
+              <h3 class="text-xl font-medium font-serif">{item.data.title}</h3>
+              <p class="text-gray-500 text-lg">${item.data.price}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Add to cart</a>
-              <a class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
-                Product details
-              </a>
+              <a href={`/merch/${item.slug}/`} class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">Add to cart</a>
+              <a href={`/merch/${item.slug}/`} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">Product details</a>
             </div>
           </div>
         ))
@@ -289,7 +200,7 @@ const merch = [
       </div>
       <div class="grid gap-3">
         <label class="text-slate-400 text-xl font-medium">Message</label>
-        <textarea class="bg-slate-700 text-white rounded-lg px-4 py-3 text-lg border border-slate-500 outline-none focus:ring ring-white/10 transition-all focus:border-slate-300" rows="6" name="message" />
+        <textarea class="bg-slate-700 text-white rounded-lg px-4 py-3 text-lg border border-slate-500 outline-none focus:ring ring-white/10 transition-all focus:border-slate-300" rows="6" name="message"></textarea>
       </div>
       <div class="grid justify-end">
         <button class="bg-slate-700 text-white rounded-lg px-6 py-2 text-lg hover:bg-slate-600 active:bg-slate-500 transition-colors">Send</button>
