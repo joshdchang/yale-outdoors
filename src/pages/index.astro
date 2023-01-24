@@ -1,12 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 
+import { Image } from '@astrojs/image/components';
+import { Icon } from 'astro-icon';
+
+import Layout from '@layouts/Layout.astro';
+
 import DesertDivider from '@components/dividers/DesertDivider.astro';
 import LandscapeDivider from '@components/dividers/LandscapeDivider.astro';
 import RockDivider from '@components/dividers/RockDivider.astro';
 import WaveDivider from '@components/dividers/WaveDivider.astro';
-import Layout from '@layouts/Layout.astro';
-import { Icon } from 'astro-icon';
 
 const trips = await getCollection('trips');
 const gear = await getCollection('gear');
@@ -28,7 +31,7 @@ const merch = await getCollection('merch');
       </div>
       <div>
         <figure class="grid gap-5">
-          <img src="/banner.jpg" alt="Yale Outdoors" class="rounded-xl" />
+          <Image src="/banner.jpg" alt="Yale Outdoors banner image" width={800} height={500} class="rounded-xl w-full" />
           <div class="flex items-center justify-between">
             <figcaption class="text-gray-700 text-sm">A recent trip to the Adirondacks</figcaption>
             <a class="text-emerald-600 hover:text-emerald-700 active:text-emerald-800 flex items-center gap-2" href="/gallery/">
@@ -77,10 +80,8 @@ const merch = await getCollection('merch');
     <div class="grid grid-cols-3 gap-10">
       {
         trips.map((trip) => (
-          <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start shadow shadow-emerald-700/10 border border-emerald-300">
-            <figure class="rounded-lg aspect-video overflow-hidden flex items-center border">
-              <img src={trip.data.image} alt={trip.data.title} class="rounded-xl mb-3" />
-            </figure>
+          <div class="bg-white rounded-xl p-9 grid gap-7 shadow shadow-emerald-700/10 border border-emerald-300">
+            <Image src={trip.data.image} alt={trip.data.title} width={500} height={281} class="rounded-lg border w-full" />
             <div class="grid gap-5 place-items-start">
               <h3 class="text-xl font-medium font-serif">{trip.data.title}</h3>
               <time datetime={trip.data.date.toISOString()} class="bg-emerald-100 px-4 py-1 rounded-full text-emerald-600">
@@ -132,10 +133,8 @@ const merch = await getCollection('merch');
     <div class="grid grid-cols-3 gap-10">
       {
         gear.map((item) => (
-          <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start">
-            <figure class="rounded-lg aspect-video overflow-hidden flex place-items-center place-content-center border w-full">
-              <img src={item.data.image} alt={item.data.title} class="rounded-xl mb-3" />
-            </figure>
+          <div class="bg-white rounded-xl p-9 grid gap-7">
+            <Image src={item.data.image} alt={item.data.title} width={500} height={281} class="rounded-lg border w-full" />
             <div class="grid gap-5 place-items-start">
               <h3 class="text-xl font-medium font-serif">{item.data.title}</h3>
               <p class="text-gray-500">{item.data.description}</p>
@@ -171,10 +170,8 @@ const merch = await getCollection('merch');
     <div class="grid grid-cols-3 gap-10">
       {
         merch.map((item) => (
-          <div class="bg-white rounded-xl p-9 grid gap-7 place-content-start shadow shadow-emerald-700/10 border border-emerald-300">
-            <figure class="rounded-lg aspect-video overflow-hidden flex items-center border">
-              <img src={item.data.image} alt={item.data.title} class="rounded-xl mb-3" />
-            </figure>
+          <div class="bg-white rounded-xl p-9 grid gap-7 shadow shadow-emerald-700/10 border border-emerald-300">
+            <Image src={item.data.image} alt={item.data.title} width={500} height={281} class="rounded-lg border w-full" />
             <div class="grid gap-5 place-items-start">
               <h3 class="text-xl font-medium font-serif">{item.data.title}</h3>
               <p class="text-gray-500 text-lg">${item.data.price}</p>

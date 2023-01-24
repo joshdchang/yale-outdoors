@@ -39,3 +39,5 @@ export const collections = {
   'merch': merchCollection,
   'gallery': galleryCollection,
 };
+
+console.log(collections);
