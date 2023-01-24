@@ -1,46 +1,46 @@
 ---
 const links = [
   {
-    label: "About",
-    url: "/about/",
+    label: 'About',
+    url: '/about/',
   },
   {
-    label: "Trips",
-    url: "/trips/",
+    label: 'Trips',
+    url: '/trips/',
   },
   {
-    label: "Gallery",
-    url: "/gallery/",
+    label: 'Gallery',
+    url: '/gallery/',
   },
   {
-    label: "News",
-    url: "/news/",
+    label: 'News',
+    url: '/news/',
   },
 ];
 ---
 
-<header class="flex justify-between mx-8 px-5 py-6 items-center border-b border-emerald-600">
+<header class='flex justify-between mx-8 px-5 py-6 items-center border-b border-emerald-600'>
   <nav>
-    <ul class="flex gap-6 justify-start">
+    <ul class='flex gap-6 justify-start'>
       {
         links.map((link) => (
-          <li class="text-emerald-600 text-sm font-medium tracking-wide hover:text-emerald-700 active:text-emerald-800 transition-colors">
+          <li class='text-emerald-600 text-sm font-medium tracking-wide hover:text-emerald-700 active:text-emerald-800 transition-colors'>
             <a href={link.url}>{link.label}</a>
           </li>
         ))
       }
     </ul>
   </nav>
-  <a href="/">
-    <h1 class="flex justify-center font-serif text-4xl font-bold text-emerald-700 text-center">Yale Outdoors</h1>
+  <a href='/'>
+    <h1 class='flex justify-center font-serif text-4xl font-bold text-emerald-700 text-center'>Yale Outdoors</h1>
   </a>
   <nav>
-    <ul class="flex gap-4 justify-end">
+    <ul class='flex gap-4 justify-end'>
       <li>
-        <a href="/merch/" class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-full transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">Get Merch</a>
+        <a href='/merch/' class='border border-emerald-500 text-emerald-600 py-2 px-6 rounded-full transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20'>Get Merch</a>
       </li>
       <li>
-        <a href="/gear/" class="bg-emerald-600 text-white py-2 px-6 rounded-full transition-colors text-sm hover:bg-emerald-700 active:bg-emerald-800">Rent Gear</a>
+        <a href='/gear/' class='bg-emerald-600 text-white py-2 px-6 rounded-full transition-colors text-sm hover:bg-emerald-700 active:bg-emerald-800'>Rent Gear</a>
       </li>
     </ul>
   </nav>

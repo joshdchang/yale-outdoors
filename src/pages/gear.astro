@@ -1,18 +1,21 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const gear = await getCollection("gear");
+const gear = await getCollection('gear');
 ---
-<Layout title="Gear">
+
+<Layout title='Gear'>
   <div>
     <h1>Gear</h1>
     <ul>
-      {gear.map((item) => (
-        <li>
-          <a href={`/gear/${item.slug}`}>{item.data.title}</a>
-        </li>
-      ))}
+      {
+        gear.map((item) => (
+          <li>
+            <a href={`/gear/${item.slug}`}>{item.data.title}</a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </Layout>

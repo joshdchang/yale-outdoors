@@ -1,9 +1,9 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const trips = await getCollection("trips");
+  const trips = await getCollection('trips');
   return trips.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

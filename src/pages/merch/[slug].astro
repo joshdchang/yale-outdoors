@@ -1,9 +1,9 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const merch = await getCollection("merch");
+  const merch = await getCollection('merch');
   return merch.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

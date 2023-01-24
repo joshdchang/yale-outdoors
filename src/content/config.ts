@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { z, defineCollection } from 'astro:content';
 
 const tripsCollection = defineCollection({
   schema: z.object({
@@ -23,9 +23,19 @@ const merchCollection = defineCollection({
     image: z.string(),
   }),
 });
+const galleryCollection = defineCollection({
+  schema: z.object({
+    caption: z.string(),
+    image: z.string(),
+    date: z.date(),
+    photographer: z.string(),
+  }),
+});
 
+// prettier-ignore
 export const collections = {
   'trips': tripsCollection,
   'gear': gearCollection,
   'merch': merchCollection,
+  'gallery': galleryCollection,
 };

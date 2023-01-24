@@ -9,4 +9,6 @@ module.exports = {
     },
   ],
   printWidth: 250,
+  singleQuote: true,
+  jsxSingleQuote: true,
 };
