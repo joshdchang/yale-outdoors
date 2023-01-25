@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const gallery = await getCollection('gallery');
+---
+
+<Layout title="Gallery">
+  <div>
+    <h1>Gallery</h1>
+    <ul>
+      {
+        gallery.map((item) => (
+          <li>
+            <a href={`/gallery/${item.slug}`}>{item.data.caption}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
