@@ -12,7 +12,7 @@ const gallery = await getCollection('gallery');
       {
         gallery.map((item) => (
           <li>
-            <a href={`/gallery/${item.slug}`}>{item.data.caption}</a>
+            <a href={`/gallery/${item.slug}`} rel="prefetch">{item.data.caption}</a>
           </li>
         ))
       }

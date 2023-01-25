@@ -1,5 +1,5 @@
 ---
 title: Yale Outdoors Mug
-image: /mug.jpg
+image: /assets/mug.jpg
 price: 10
 ---

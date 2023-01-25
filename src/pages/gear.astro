@@ -12,7 +12,7 @@ const gear = await getCollection('gear');
       {
         gear.map((item) => (
           <li>
-            <a href={`/gear/${item.slug}`}>{item.data.title}</a>
+            <a href={`/gear/${item.slug}`} rel="prefetch">{item.data.title}</a>
           </li>
         ))
       }

@@ -12,7 +12,7 @@ const trips = await getCollection('trips');
       {
         trips.map((trip) => (
           <li>
-            <a href={`/trips/${trip.slug}`}>{trip.data.title}</a>
+            <a href={`/trips/${trip.slug}`} rel="prefetch">{trip.data.title}</a>
           </li>
         ))
       }

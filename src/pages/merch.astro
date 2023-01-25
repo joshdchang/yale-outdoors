@@ -12,7 +12,7 @@ const merch = await getCollection('merch');
       {
         merch.map((item) => (
           <li>
-            <a href={`/merch/${item.slug}`}>{item.data.title}</a>
+            <a href={`/merch/${item.slug}`} rel="prefetch">{item.data.title}</a>
           </li>
         ))
       }

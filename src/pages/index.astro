@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 
 import { Image } from '@astrojs/image/components';
 import { Icon } from 'astro-icon';
@@ -14,10 +14,12 @@ import WaveDivider from '@components/dividers/WaveDivider.astro';
 const trips = await getCollection('trips');
 const gear = await getCollection('gear');
 const merch = await getCollection('merch');
+
+const banner = await getEntryBySlug('gallery', 'banner');
 ---
 
 <Layout title="Home">
-  <section class="p-20 pb-0">
+  <section class="p-20 pb-14">
     <div class="grid grid-cols-2 gap-28">
       <div class="grid gap-14 items-center">
         <h2 class="text-4xl leading-relaxed text-emerald-800 font-serif">Offering trips, events, and good-spirited community to Yale since who knows when.</h2>
@@ -31,10 +33,10 @@ const merch = await getCollection('merch');
       </div>
       <div>
         <figure class="grid gap-5">
-          <Image src="/banner.jpg" alt="Yale Outdoors banner image" width={1200} height={750} class="rounded-xl w-full" />
+          <Image src={banner.data.image} alt={banner.data.caption} width={1200} height={750} class="rounded-xl w-full" fetchpriority="high" />
           <div class="flex items-center justify-between">
-            <figcaption class="text-gray-700 text-sm">A recent trip to the Adirondacks</figcaption>
-            <a class="text-emerald-600 hover:text-emerald-700 active:text-emerald-800 flex items-center gap-2" href="/gallery/">
+            <figcaption class="text-gray-700 text-sm">{banner.data.caption}</figcaption>
+            <a href="/gallery/" rel="prefetch" class="text-emerald-600 hover:text-emerald-700 active:text-emerald-800 flex items-center gap-2">
               View Gallery
               <Icon name="tabler:arrow-right" class="w-6" />
             </a>
@@ -60,7 +62,7 @@ const merch = await getCollection('merch');
         </p>
       </div>
       <div class="grid gap-10 justify-start">
-        <a href="/about/" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-emerald-600 hover:bg-emerald-800 active:bg-emerald-900 transition-colors rounded-full">
+        <a href="/about/" rel="prefetch" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-emerald-600 hover:bg-emerald-800 active:bg-emerald-900 transition-colors rounded-full">
           <!-- <Icon name="tabler:mountain" class="w-6" /> -->
           More about us
         </a>
@@ -72,7 +74,7 @@ const merch = await getCollection('merch');
   <section class="p-20 pt-24 pb-10 grid gap-20">
     <div class="flex justify-between items-center">
       <h2 class="text-emerald-700 font-serif font-bold text-4xl">Upcoming Trips + Events</h2>
-      <a href="/trips/" class="flex items-center gap-2 text-white text-lg px-16 py-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 transition-colors rounded-full">
+      <a href="/trips/" rel="prefetch" class="flex items-center gap-2 text-white text-lg px-16 py-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 transition-colors rounded-full">
         <Icon name="tabler:calendar" class="w-6" />
         Full schedule
       </a>
@@ -104,10 +106,10 @@ const merch = await getCollection('merch');
               <p class="text-gray-500">{trip.data.description}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a href={`/trips/${trip.slug}/`} class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">
+              <a href={`/trips/${trip.slug}/`} rel="prefetch" class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">
                 Register
               </a>
-              <a href={`/trips/${trip.slug}/`} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
+              <a href={`/trips/${trip.slug}/`} rel="prefetch" class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
                 Trip info
               </a>
             </div>
@@ -124,7 +126,7 @@ const merch = await getCollection('merch');
         <p class="text-orange-100 text-xl leading-relaxed">The Yale Outdoors Gear Room has a large collection of supplies that you can rent at low cost. The Gear Room is open from 3 to 5 PM on Thursdays.</p>
       </div>
       <div class="grid justify-end items-center">
-        <a href="/gear/" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-orange-600 hover:bg-orange-800 active:bg-orange-900 transition-colors rounded-full">
+        <a href="/gear/" rel="prefetch" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-orange-600 hover:bg-orange-800 active:bg-orange-900 transition-colors rounded-full">
           <Icon name="tabler:shopping-cart" class="w-6" />
           Full gear list
         </a>
@@ -140,7 +142,7 @@ const merch = await getCollection('merch');
               <p class="text-gray-500">{item.data.description}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a href={`/gear/${item.slug}/`} class="bg-orange-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-orange-700 active:bg-orange-800 transition-colors">
+              <a href={`/gear/${item.slug}/`} rel="prefetch" class="bg-orange-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-orange-700 active:bg-orange-800 transition-colors">
                 View selection
               </a>
             </div>
@@ -161,7 +163,7 @@ const merch = await getCollection('merch');
         </p>
       </div>
       <div class="grid justify-end items-center">
-        <a href="/gear/" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-emerald-600 hover:bg-emerald-800 active:bg-emerald-900 transition-colors rounded-full">
+        <a href="/gear/" rel="prefetch" class="flex items-center gap-2 text-white text-xl px-16 py-3 bg-emerald-600 hover:bg-emerald-800 active:bg-emerald-900 transition-colors rounded-full">
           <Icon name="tabler:shopping-cart" class="w-6" />
           View full store
         </a>
@@ -177,10 +179,10 @@ const merch = await getCollection('merch');
               <p class="text-gray-500 text-lg">${item.data.price}</p>
             </div>
             <div class="flex items-center gap-3">
-              <a href={`/merch/${item.slug}/`} class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">
+              <a href={`/merch/${item.slug}/`} rel="prefetch" class="bg-emerald-600 text-white rounded-lg px-6 py-2 text-sm hover:bg-emerald-700 active:bg-emerald-800 transition-colors">
                 Add to cart
               </a>
-              <a href={`/merch/${item.slug}/`} class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
+              <a href={`/merch/${item.slug}/`} rel="prefetch" class="border border-emerald-500 text-emerald-600 py-2 px-6 rounded-lg transition-colors text-sm hover:bg-emerald-800/10 active:bg-emerald-800/20">
                 Product details
               </a>
             </div>

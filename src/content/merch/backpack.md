@@ -1,5 +1,5 @@
 ---
 title: Yale Outdoors Backpack
-image: /bag.jpg
+image: /assets/bag.jpg
 price: 50
 ---

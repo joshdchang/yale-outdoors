@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const resources = await getCollection('resources');
+---
+
+<Layout title="Resources">
+  <div>
+    <h1>Resources</h1>
+    <ul>
+      {
+        resources.map((item) => (
+          <li>
+            <a href={`/resources/${item.slug}`} rel="prefetch">{item.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

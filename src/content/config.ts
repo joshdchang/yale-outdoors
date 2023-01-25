@@ -31,6 +31,13 @@ const galleryCollection = defineCollection({
     photographer: z.string(),
   }),
 });
+const resourcesCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    thumbnail: z.string(),
+  }),
+});
 
 // prettier-ignore
 export const collections = {
@@ -38,6 +45,5 @@ export const collections = {
   'gear': gearCollection,
   'merch': merchCollection,
   'gallery': galleryCollection,
+  'resources': resourcesCollection,
 };
-
-console.log(collections);

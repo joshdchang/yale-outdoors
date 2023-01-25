@@ -1,5 +1,5 @@
 ---
 title: Yale Outdoors Sticker
-image: /sticker.jpg
+image: /assets/sticker.jpg
 price: 5
 ---

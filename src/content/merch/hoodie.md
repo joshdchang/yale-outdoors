@@ -1,5 +1,5 @@
 ---
 title: Yale Outdoors Hoodie
-image: /hoodie.jpg
+image: /assets/hoodie.jpg
 price: 40
 ---
