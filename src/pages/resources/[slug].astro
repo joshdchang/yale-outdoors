@@ -15,6 +15,9 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={`Resources – ${entry.data.title}`}>
-  <h1>{entry.data.title}</h1>
-  <Content />
+  <div class="flex justify-center p-24">
+    <article class="prose prose-xl prose-emerald prose-headings:font-serif prose-headings:text-emerald-800">
+      <Content />
+    </article>
+  </div>
 </Layout>
