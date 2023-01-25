@@ -1,8 +1,27 @@
 import { z, defineCollection } from 'astro:content';
 
+// // example implementation yo() to add metadata to the schema for the CMS
+// type YoConfig = {
+//   name: string;
+//   info?: string;
+//   view?: 'input' | 'image' | 'video';
+// }
+// function yo(config: YoConfig | string) {
+//   if (typeof config === 'string') {
+//     return `{"name": "${config}"}"}`
+//   }
+//   return JSON.stringify(config);
+// }
+
 const tripsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    // // example using yo() to add metadata to the schema for the CMS
+    // title: z.string().describe(yo({
+    //   name: 'Title',
+    //   info: 'The title of the trip',
+    //   view: 'input',
+    // })),
     description: z.string(),
     date: z.date(),
     time: z.boolean(),
