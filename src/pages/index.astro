@@ -33,7 +33,7 @@ const banner = await getEntryBySlug('gallery', 'banner');
       </div>
       <div>
         <figure class="grid gap-5">
-          <Image src={banner.data.image} alt={banner.data.caption} width={1200} height={750} class="rounded-xl w-full" fetchpriority="high" />
+          <Image src={banner.data.image} alt={banner.data.caption} width={1200} height={750} class="rounded-xl w-full" fetchpriority="high" loading="eager" />
           <div class="flex items-center justify-between">
             <figcaption class="text-gray-700 text-sm">{banner.data.caption}</figcaption>
             <a href="/gallery/" rel="prefetch" class="text-emerald-600 hover:text-emerald-700 active:text-emerald-800 flex items-center gap-2">
