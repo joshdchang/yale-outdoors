@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
@@ -12,7 +14,9 @@ const gallery = await getCollection('gallery');
       {
         gallery.map((item) => (
           <li>
-            <a href={`/gallery/${item.slug}`} rel="prefetch">{item.data.caption}</a>
+            <a href={`/gallery/${item.slug}`} rel="prefetch">
+              {item.data.caption}
+            </a>
           </li>
         ))
       }

@@ -1,32 +1,63 @@
 import { z, defineCollection } from 'astro:content';
 
-// // example implementation yo() to add metadata to the schema for the CMS
-// type YoConfig = {
-//   name: string;
-//   info?: string;
-//   view?: 'input' | 'image' | 'video';
-// }
-// function yo(config: YoConfig | string) {
-//   if (typeof config === 'string') {
-//     return `{"name": "${config}"}"}`
-//   }
-//   return JSON.stringify(config);
-// }
+// example implementation yo() to add metadata to the schema for the CMS
+type CMSConfig = {
+  name: string;
+  info?: string;
+  view?: 'input' | 'date' | 'checkbox' | 'switch' | 'textarea' | 'markdown' | 'image' | 'youtube';
+};
+function cms(config: CMSConfig | string) {
+  if (typeof config === 'string') {
+    return `{"name": "${config}"}`;
+  }
+  return JSON.stringify(config);
+}
 
 const tripsCollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    // // example using yo() to add metadata to the schema for the CMS
-    // title: z.string().describe(yo({
-    //   name: 'Title',
-    //   info: 'The title of the trip',
-    //   view: 'input',
-    // })),
-    description: z.string(),
-    date: z.date(),
-    time: z.boolean(),
-    image: z.string(),
-  }),
+  schema: z
+    .object({
+      title: z.string().describe(
+        cms({
+          name: 'Title',
+          info: 'The name of the trip or event',
+          view: 'input',
+        })
+      ),
+      description: z.string().describe(
+        cms({
+          name: 'Description',
+          info: 'A short description of the trip or event',
+          view: 'textarea',
+        })
+      ),
+      date: z.date().describe(
+        cms({
+          name: 'Date',
+          info: 'The date of the trip or event',
+          view: 'date',
+        })
+      ),
+      time: z.boolean().describe(
+        cms({
+          name: 'Show time',
+          info: 'Whether to display the time of the trip or event',
+          view: 'switch',
+        })
+      ),
+      image: z.string().describe(
+        cms({
+          name: 'Feautured image',
+          info: 'The image to display for the trip or event',
+          view: 'image',
+        })
+      ),
+    })
+    .describe(
+      cms({
+        name: 'Trips + Events',
+        info: 'Upcoming trips and events such as hikes, meetings, workshops, etc.',
+      })
+    ),
 });
 const gearCollection = defineCollection({
   schema: z.object({
