@@ -1,5 +1,5 @@
 import { browserSessionPersistence, GithubAuthProvider, GoogleAuthProvider, setPersistence, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { createSignal } from 'solid-js';
+import { createSignal, Show } from 'solid-js';
 import { auth } from '../firebase';
 import { IconBrandGithub, IconBrandGoogle, IconLock } from '@tabler/icons-solidjs';
 
@@ -111,10 +111,14 @@ export default function SignIn() {
             </div>
           </div>
           <button type="submit" disabled={loading()} class="rounded-md bg-blue-600 hover:bg-blue-500 transition-colors active:bg-blue-400 text-white text-sm p-2.5 flex items-center justify-center relative disabled:bg-blue-400">
-            {loading() && <div class="w-4 h-4 rounded-full border-blue-200 border-b-2 border-r-2 animate-spin absolute left-3"></div>}
+            <Show when={loading()}>
+              <div class="w-4 h-4 rounded-full border-blue-200 border-b-2 border-r-2 animate-spin absolute left-3"></div>
+            </Show>
             Sign in
           </button>
-          {error() && <p class="text-red-500 text-sm">{error()}</p>}
+          <Show when={error()}>
+            <p class="text-red-500 text-sm">{error()}</p>
+          </Show>
           <div class="flex items-center">
             <hr class="flex-grow border-slate-300" />
             <span class="mx-2 text-slate-500 text-sm">Or continue with</span>

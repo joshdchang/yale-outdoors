@@ -1,5 +1,5 @@
 import { A } from '@solidjs/router';
-import { IconCommand, IconEdit, IconFolder, IconLayoutDashboard, IconSearch, IconSettings } from '@tabler/icons-solidjs';
+import { IconCommand, IconEdit, IconFolder, IconLayoutDashboard, IconPhoto, IconSearch, IconSettings } from '@tabler/icons-solidjs';
 import { collections } from '@content/config';
 import { For } from 'solid-js';
 import { auth } from '../firebase';
@@ -9,7 +9,7 @@ import { parseSchemaDescription } from '../lib/description';
 export default function Sidebar(props: { children: any }) {
   return (
     <div class="flex">
-      <div class="flex flex-col h-screen w-80 text-sm justify-between bg-white shadow overflow-scroll relative">
+      <div class="flex-none flex flex-col h-screen w-80 text-sm justify-between bg-white shadow overflow-scroll relative">
         <div>
           <div class="sticky top-0 pointer-events-none">
             <div class="flex items-center gap-3 p-9 bg-white pointer-events-auto">
@@ -47,6 +47,14 @@ export default function Sidebar(props: { children: any }) {
                 </A>
               </li>
               <li>
+                <A href="/media" activeClass="text-blue-600" inactiveClass="text-slate-600 hover:text-black" class="group flex gap-4 rounded-md font-medium transition-colors items-center">
+                  <div class="p-1.5 rounded-lg border border-slate-300 shadow-sm transition-all group-hover:border-slate-400 group-hover:shadow group-aria-[current]:border-blue-600 group-aria-[current]:bg-blue-600">
+                    <IconPhoto class="w-5 h-5 text-slate-500 group-hover:text-slate-600 transition-colors group-aria-[current]:text-white" />
+                  </div>
+                  Media
+                </A>
+              </li>
+              <li>
                 <A href="/settings" activeClass="text-blue-600" inactiveClass="text-slate-600 hover:text-black" class="group flex gap-4 rounded-md font-medium transition-colors items-center">
                   <div class="p-1.5 rounded-lg border border-slate-300 shadow-sm transition-all group-hover:border-slate-400 group-hover:shadow group-aria-[current]:border-blue-600 group-aria-[current]:bg-blue-600">
                     <IconSettings class="w-5 h-5 text-slate-500 group-hover:text-slate-600 transition-colors group-aria-[current]:text-white" />
@@ -56,7 +64,7 @@ export default function Sidebar(props: { children: any }) {
               </li>
             </ul>
             <div class="grid gap-4">
-              <h3 class="text-slate-800 font-semibold">Content</h3>
+              <h2 class="text-slate-800 font-semibold">Content</h2>
               <ul class="grid gap-3 overflow-scroll">
                 {/* <li class="flex">
                   <A
@@ -76,9 +84,9 @@ export default function Sidebar(props: { children: any }) {
                     <li class="flex">
                       <A
                         href={`/collection/${key}`}
-                        activeClass="text-white border-blue-600 bg-blue-600 shadow-sky-100 active:bg-blue-700"
+                        activeClass="text-white border-blue-600 bg-blue-600 shadow-sky-100 active:bg-blue-500"
                         inactiveClass="text-slate-600 border-slate-300 active:bg-slate-200 hover:bg-slate-100"
-                        class="px-3 py-2 rounded-lg border shadow-sm capitalize w-full justify-between group items-center transition-all flex"
+                        class="px-3 py-2 rounded-md border shadow-sm capitalize w-full justify-between group items-center transition-all flex"
                       >
                         <span class="flex gap-3">
                           <IconFolder class="w-5 h-5 text-slate-500 transition-colors group-aria-[current]:text-white" />
@@ -99,7 +107,7 @@ export default function Sidebar(props: { children: any }) {
           </button>
         </div>
       </div>
-      <div class="flex-grow p-10">{props.children}</div>
+      <div class="p-16 flex-grow overflow-y-scroll h-screen">{props.children}</div>
     </div>
   );
 }

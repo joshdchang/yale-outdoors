@@ -1,10 +1,14 @@
 import { z, defineCollection } from 'astro:content';
 
-// example implementation yo() to add metadata to the schema for the CMS
+type ThumbnailCategory = {
+  view: 'image' | 'title' | 'description' | 'price'; // TODO: add more views
+  field: string;
+};
 type CMSConfig = {
   name: string;
   info?: string;
   view?: 'input' | 'date' | 'checkbox' | 'switch' | 'textarea' | 'markdown' | 'image' | 'youtube';
+  thumbnail?: ThumbnailCategory[];
 };
 function cms(config: CMSConfig | string) {
   if (typeof config === 'string') {
@@ -56,37 +60,135 @@ const tripsCollection = defineCollection({
       cms({
         name: 'Trips + Events',
         info: 'Upcoming trips and events such as hikes, meetings, workshops, etc.',
+        thumbnail: [
+          {
+            view: 'image',
+            field: 'image',
+          },
+          {
+            view: 'title',
+            field: 'title',
+          },
+          {
+            view: 'description',
+            field: 'description',
+          },
+        ],
       })
     ),
 });
 const gearCollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    image: z.string(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      image: z.string(),
+    })
+    .describe(
+      cms({
+        name: 'Gear Room',
+        info: 'An overview of the gear we have in the gear room',
+        thumbnail: [
+          {
+            view: 'image',
+            field: 'image',
+          },
+          {
+            view: 'title',
+            field: 'title',
+          },
+          {
+            view: 'description',
+            field: 'description',
+          },
+        ],
+      })
+    ),
 });
 const merchCollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    price: z.number(),
-    image: z.string(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      price: z.number(),
+      image: z.string(),
+    })
+    .describe(
+      cms({
+        name: 'Merch',
+        info: 'Merchandise for sale',
+        thumbnail: [
+          {
+            view: 'image',
+            field: 'image',
+          },
+          {
+            view: 'title',
+            field: 'title',
+          },
+          {
+            view: 'price',
+            field: 'price',
+          },
+        ],
+      })
+    ),
 });
 const galleryCollection = defineCollection({
-  schema: z.object({
-    caption: z.string(),
-    image: z.string(),
-    date: z.date(),
-    photographer: z.string(),
-  }),
+  schema: z
+    .object({
+      caption: z.string(),
+      image: z.string(),
+      date: z.date(),
+      photographer: z.string(),
+    })
+    .describe(
+      cms({
+        name: 'Photo Gallery',
+        info: 'Photos from our trips and events',
+        thumbnail: [
+          {
+            view: 'image',
+            field: 'image',
+          },
+          {
+            view: 'title',
+            field: 'caption',
+          },
+          {
+            view: 'description',
+            field: 'photographer',
+          },
+        ],
+      })
+    ),
 });
 const resourcesCollection = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    thumbnail: z.string(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      thumbnail: z.string(),
+    })
+    .describe(
+      cms({
+        name: 'Resources',
+        info: 'Useful information and articles',
+        thumbnail: [
+          {
+            view: 'image',
+            field: 'thumbnail',
+          },
+          {
+            view: 'title',
+            field: 'title',
+          },
+          {
+            view: 'description',
+            field: 'description',
+          },
+        ],
+      })
+    ),
 });
 
 // prettier-ignore
